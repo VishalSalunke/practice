@@ -1,15 +1,25 @@
-import react from 'react'
+import react, { useState } from 'react'
 import { RiCloseCircleLine } from "react-icons/ri";
 import { RiEdit2Line } from "react-icons/ri";
+import TodoForm from './todoForm';
 
-const TodoList = (props) => {
+const TodoList = ({todos, removeTodo,udpateTodo}) => {
+const [edit, setEdit] = useState({id: null, text: ''})
 
- return props.todos.map((todo, i) => (
+const submitUpdate = () => {
+// logic
+//setEdit({id: null, text: ''})
+}
+
+if(edit.id){
+  return <TodoForm edit={edit} submitUpdate={submitUpdate}/>
+}
+ return todos.map((todo, i) => (
 <div>
         <div key={todo.id} style={{backgroundColor: i%2===0 ? 'white' : 'grey'}}>
           {todo.text}
-          <RiCloseCircleLine />
-        <RiEdit2Line />
+          <RiCloseCircleLine onClick={()=> removeTodo(todo.id)}/>
+          <RiEdit2Line onClick={() => setEdit({id: todo.id, text: todo.text})} />
         </div>
 
 

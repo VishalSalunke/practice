@@ -10,11 +10,20 @@ const addTodos = (todo) => {
   setTodos(newTodos)
   console.log(todos)
 }
+const removeTodo = (id) => {
+  const filteredArray = [...todos].filter(todo => todo.id !== id)
+  setTodos(filteredArray)
+}
+
+const udpateTodo = () => {
+// update logic
+}
+
   return(
     <div>
       <h1>Whats the plan for today? </h1>
       <TodoForm pushData={addTodos} />
-      <TodoList todos={todos}/>
+      <TodoList todos={todos} removeTodo={removeTodo} udpateTodo={udpateTodo}/>
     </div>
   )
 }
